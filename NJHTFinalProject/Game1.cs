@@ -36,19 +36,23 @@ namespace NJHTFinalProject
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.W)|| Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
+                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
                 _position.Y -= 10; /*_position.Y = _position.Y - 1;*/
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down)
+                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
             {
                 _position.Y += 10; 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)
+                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
             {
                 _position.X -= 10; 
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)
+                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
             {
                 _position.X += 10;
             }
