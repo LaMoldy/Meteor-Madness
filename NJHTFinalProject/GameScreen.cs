@@ -4,13 +4,27 @@ using Microsoft.Xna.Framework.Input;
 
 namespace NJHTFinalProject
 {
-    public class Game1 : Game
+    public class GameScreen : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private Texture2D _texture;
+        public SpriteBatch _spriteBatch;
+
+        // Declares all scenes
+        private StartScene startScene;
+
+        private Texture2D _spaceShip;
         private Vector2 _position;
-        public Game1()
+
+        private void hideAllScenes()
+        {
+            GameScene gs = null;
+            foreach (GameScene component in Components)
+            {
+                component.Hide();
+            }
+        }
+
+        public GameScreen()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -19,23 +33,26 @@ namespace NJHTFinalProject
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            
             base.Initialize();
+            
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _texture = Content.Load<Texture2D>("Spaceship_01_BLUE");
+            _spaceShip = Content.Load<Texture2D>("Images/Spaceship");
             _position = new Vector2(150, 100);
-            // TODO: use this.Content to load your game content here
+
+            startScene = new StartScene(this);
+            this.Components.Add(startScene);
+            startScene.Show();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
@@ -56,7 +73,6 @@ namespace NJHTFinalProject
             {
                 _position.X += 10;
             }
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -66,7 +82,7 @@ namespace NJHTFinalProject
             GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_texture, _position, Color.White);
+            _spriteBatch.Draw(_spaceShip, _position, Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
