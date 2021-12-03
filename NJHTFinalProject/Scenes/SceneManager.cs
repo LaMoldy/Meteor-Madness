@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace NJHTFinalProject
+namespace NJHTFinalProject.Scenes
 {
-    public abstract class GameScene : DrawableGameComponent
+    public abstract class SceneManager : DrawableGameComponent
     {
         // List of GameComponents
         public List<GameComponent> Components { get; set; }
@@ -40,7 +40,7 @@ namespace NJHTFinalProject
         /// GameScene Constructor
         /// </summary>
         /// <param name="game">Game</param>
-        protected GameScene(Game game) : base(game)
+        protected SceneManager(Game game) : base(game)
         {
             // Instantiates the list of components
             Components = new List<GameComponent>();

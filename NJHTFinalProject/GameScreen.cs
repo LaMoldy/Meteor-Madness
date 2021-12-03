@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject
 {
@@ -11,14 +12,12 @@ namespace NJHTFinalProject
 
         // Declares all scenes
         private StartScene startScene;
+        private GameScene gameScene;
 
-        private Texture2D _spaceShip;
-        private Vector2 _position;
-
-        private void hideAllScenes()
+        private void HideAllScenes()
         {
-            GameScene gs = null;
-            foreach (GameScene component in Components)
+            SceneManager gs = null;
+            foreach (SceneManager component in Components)
             {
                 component.Hide();
             }
@@ -28,7 +27,7 @@ namespace NJHTFinalProject
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
@@ -36,42 +35,53 @@ namespace NJHTFinalProject
             Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
             
             base.Initialize();
-            
-
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _spaceShip = Content.Load<Texture2D>("Images/Spaceship");
-            _position = new Vector2(150, 100);
 
             startScene = new StartScene(this);
+            gameScene = new GameScene(this);
+
             this.Components.Add(startScene);
+            this.Components.Add(gameScene);
+
             startScene.Show();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
+
+            int selectedIndex = startScene.Menu.SelectedIndex;
+
+            if (startScene.Enabled)
             {
-                _position.Y -= 10; /*_position.Y = _position.Y - 1;*/
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down)
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
-            {
-                _position.Y += 10; 
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
-            {
-                _position.X -= 10; 
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
-            {
-                _position.X += 10;
+                KeyboardState keyboardState = Keyboard.GetState();
+                if (keyboardState.IsKeyDown(Keys.Enter) 
+                    || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) {
+                    if (selectedIndex == 0)
+                    {
+                        HideAllScenes();
+                        gameScene.Show();
+                    }
+                    else if (selectedIndex == 1)
+                    {
+                        HideAllScenes();
+                    }
+                    else if (selectedIndex == 2)
+                    {
+                        HideAllScenes();
+                    }
+                    else if (selectedIndex == 3)
+                    {
+                        HideAllScenes();
+                    }
+                    else if (selectedIndex == 4)
+                    {
+                        this.Exit();
+                    }
+                }
             }
 
             base.Update(gameTime);
@@ -80,10 +90,6 @@ namespace NJHTFinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(_spaceShip, _position, Color.White);
-            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

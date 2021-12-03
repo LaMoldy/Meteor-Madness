@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace NJHTFinalProject
+namespace NJHTFinalProject.Components
 {
     public class MenuComponent : DrawableGameComponent
     {
@@ -13,8 +13,11 @@ namespace NJHTFinalProject
         private SpriteFont _regularFont, _highlightFont;
         private string[] _menuItems;
         private Vector2 _position;
-        private Color _regularColor = Color.Black;
+        private Color _regularColor = Color.White;
         private Color _highlightColor = Color.Red;
+
+        private KeyboardState oldState;
+        private GamePadState oldGPState;
         
         public int SelectedIndex { get; set; }
 
@@ -59,10 +62,11 @@ namespace NJHTFinalProject
         public override void Update(GameTime gameTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-            if (keyboardState.IsKeyDown(Keys.Down) 
-                || GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed 
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
+            if ((keyboardState.IsKeyDown(Keys.Down) && oldState.IsKeyUp(Keys.Down)) 
+                || (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed && oldGPState.DPad.Down == ButtonState.Released)
+                || (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0 && oldGPState.ThumbSticks.Left.Y == 0))
             {
                 SelectedIndex++;
                 if (SelectedIndex == _menuItems.Length)
@@ -71,9 +75,9 @@ namespace NJHTFinalProject
                 }
             }
 
-            if (keyboardState.IsKeyDown(Keys.Up)
-                || GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed
-                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
+            if ((keyboardState.IsKeyDown(Keys.Up) && oldState.IsKeyUp(Keys.Up))
+                || (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed && oldGPState.DPad.Up == ButtonState.Released)
+                || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0 && oldGPState.ThumbSticks.Left.Y == 0)
             {
                 SelectedIndex--;
                 if (SelectedIndex == -1)
@@ -81,6 +85,9 @@ namespace NJHTFinalProject
                     SelectedIndex = _menuItems.Length - 1;
                 }
             }
+
+            oldState = keyboardState;
+            oldGPState = gamePadState;
 
             base.Update(gameTime);
         }

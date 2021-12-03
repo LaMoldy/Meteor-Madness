@@ -4,10 +4,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NJHTFinalProject.Components;
 
-namespace NJHTFinalProject
+namespace NJHTFinalProject.Scenes
 {
-    public class StartScene : GameScene
+    public class StartScene : SceneManager
     {
         public MenuComponent Menu { get; set; }
 
