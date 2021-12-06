@@ -9,6 +9,12 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <Product>Meteor Madness</Product>
+    <Authors>Nikk Jackson, , Harshal Thavrani</Authors>
+    <Company>NJHT Studios</Company>
+    <Description>The final project for the Game Programming and Data Structures course</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Project_Key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
