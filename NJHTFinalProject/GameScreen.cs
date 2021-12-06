@@ -18,6 +18,7 @@ namespace NJHTFinalProject
         // Declares all scenes
         private MenuScene startScene;
         private GameScene gameScene;
+        private AboutScene aboutScene;
 
         private void HideAllScenes()
         {
@@ -71,12 +72,14 @@ namespace NJHTFinalProject
 
             startScene = new MenuScene(this);
             gameScene = new GameScene(this);
+            aboutScene = new AboutScene(this);
 
             _menuMusic = Content.Load<SoundEffect>("Sounds/MenuMusic");
             _buttonSelected = Content.Load<SoundEffect>("Sounds/ButtonSelected");
 
             this.Components.Add(startScene);
             this.Components.Add(gameScene);
+            this.Components.Add(aboutScene);
 
             _menuInstance = _menuMusic.CreateInstance();
             _menuInstance.IsLooped = true;
@@ -122,8 +125,9 @@ namespace NJHTFinalProject
                     else if (selectedIndex == 3)
                     {
                         _buttonSelectedIntance.Play();
-
                         HideAllScenes(); // Goes to about scene
+
+                        aboutScene.Show();
                     }
                     else if (selectedIndex == 4)
                     {
@@ -132,6 +136,17 @@ namespace NJHTFinalProject
 
                         Exit(); // Exits the program
                     }
+                }
+            }
+            else if (aboutScene.Enabled)
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                
+                if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
+                {
+                    aboutScene.Hide();
+                    startScene.Show();
                 }
             }
 
