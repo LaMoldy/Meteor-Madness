@@ -18,21 +18,30 @@ namespace NJHTFinalProject.Scenes
 
         private SpriteBatch _spriteBatch;
 
-        string[] menuItems = { "Play", "Options", "Help", "About Us", "Exit" };
+        Texture2D[] menuButtons = new Texture2D[10];
 
         public MenuScene(Game game) : base(game)
         {
             GameScreen g = (GameScreen)game;
             _spriteBatch = g._spriteBatch;
 
-            SpriteFont regularFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
-            SpriteFont highlightFont = g.Content.Load<SpriteFont>("Fonts/highlightFont");
             Texture2D background = g.Content.Load<Texture2D>("Images/Background"); // SOURCE: https://www.freepik.com/free-vector/space-banner-with-purple-planet-landscape_13778479.htm#page=1&query=cartoon%20space&position=13&from_view=keyword
             SoundEffect buttonSound = g.Content.Load<SoundEffect>("Sounds/ButtonSound"); // SOURCE: https://www.youtube.com/watch?v=ILaQFzeuamU
 
+            menuButtons[0] = g.Content.Load<Texture2D>("Images/MenuButtons/PlayButton");
+            menuButtons[1] = g.Content.Load<Texture2D>("Images/MenuButtons/OptionsButton");
+            menuButtons[2] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButton");
+            menuButtons[3] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButton");
+            menuButtons[4] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButton");
+            menuButtons[5] = g.Content.Load<Texture2D>("Images/MenuButtons/PlayButtonSelected");
+            menuButtons[6] = g.Content.Load<Texture2D>("Images/MenuButtons/OptionsButtonSelected");
+            menuButtons[7] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButtonSelected");
+            menuButtons[8] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButtonSelected");
+            menuButtons[9] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButtonSelected");
+
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
 
-            Menu = new MenuComponent(game, _spriteBatch, regularFont, highlightFont, background, screenSize, buttonSound, menuItems);
+            Menu = new MenuComponent(game, _spriteBatch, background, screenSize, buttonSound, menuButtons);
             this.Components.Add(Menu);
         }
     }

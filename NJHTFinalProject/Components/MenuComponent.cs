@@ -11,14 +11,11 @@ namespace NJHTFinalProject.Components
     public class MenuComponent : DrawableGameComponent
     {
         private SpriteBatch _spriteBatch;
-        private SpriteFont _regularFont, _highlightFont;
         private Texture2D _background;
+        private Texture2D[] _menuButtons;
         private Rectangle _screenSize;
         private SoundEffect _buttonSound;
-        private string[] _menuItems;
         private Vector2 _position;
-        private Color _regularColor = Color.White;
-        private Color _highlightColor = Color.Red;
 
         private KeyboardState oldState;
         private GamePadState oldGPState;
@@ -27,21 +24,17 @@ namespace NJHTFinalProject.Components
 
         public MenuComponent(Game game,
             SpriteBatch spriteBatch,
-            SpriteFont regularFont,
-            SpriteFont highlightFont,
             Texture2D background,
             Rectangle screenSize,
             SoundEffect buttonSound,
-            string[] menuItems) : base(game)
+            Texture2D[] menuButtons) : base(game)
         {
             _spriteBatch = spriteBatch;
-            _regularFont = regularFont;
-            _highlightFont = highlightFont;
-            _menuItems = menuItems;
-            _position = new Vector2(Shared.stage.X / 2 - 40, Shared.stage.Y / 2 - 40);
+            _position = new Vector2(Shared.stage.X / 2 - 150, Shared.stage.Y / 2 - 50);
             _screenSize = screenSize;
             _background = background;
             _buttonSound = buttonSound;
+            _menuButtons = menuButtons;
         }
 
         public override void Draw(GameTime gameTime)
@@ -52,17 +45,17 @@ namespace NJHTFinalProject.Components
 
             _spriteBatch.Draw(_background, _screenSize, Color.White);
 
-            for (int i = 0; i < _menuItems.Length; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (SelectedIndex == i)
                 {
-                    _spriteBatch.DrawString(_highlightFont, _menuItems[i], tempPosition, _highlightColor);
-                    tempPosition.Y += _highlightFont.LineSpacing;
+                    _spriteBatch.Draw(_menuButtons[i + 5], tempPosition, Color.White);
+                    tempPosition.Y += 90;
                 }
                 else
                 {
-                    _spriteBatch.DrawString(_regularFont, _menuItems[i], tempPosition, _regularColor);
-                    tempPosition.Y += _regularFont.LineSpacing;
+                    _spriteBatch.Draw(_menuButtons[i], tempPosition, Color.White);
+                    tempPosition.Y += 90;
                 }
             }
 
@@ -86,10 +79,9 @@ namespace NJHTFinalProject.Components
 
                 instance.Play();
 
-                if (SelectedIndex == _menuItems.Length)
+                if (SelectedIndex == 5)
                 {
                     SelectedIndex = 0;
-                    
                 }
             }
 
@@ -102,7 +94,7 @@ namespace NJHTFinalProject.Components
                 instance.Play();
                 if (SelectedIndex == -1)
                 {
-                    SelectedIndex = _menuItems.Length - 1;
+                    SelectedIndex = 4;
                 }
             }
 

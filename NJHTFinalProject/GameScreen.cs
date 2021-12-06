@@ -118,14 +118,12 @@ namespace NJHTFinalProject
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes(); // Goes to help scene
-                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 3)
                     {
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes(); // Goes to about scene
-                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 4)
                     {
