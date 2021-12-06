@@ -30,9 +30,11 @@ namespace NJHTFinalProject
 
         public GameScreen()
         {
+            Window.Title = "Meteor Madness";
+
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
             
             
 
@@ -47,10 +49,13 @@ namespace NJHTFinalProject
             else
             {
                 Window.AllowUserResizing = true;
+                _graphics.PreferredBackBufferWidth = 1916;
+                _graphics.PreferredBackBufferHeight = 1020;
+                _graphics.ApplyChanges();
             }
 
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = false;
         }
 
         protected override void Initialize()
