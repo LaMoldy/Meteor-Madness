@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject
@@ -9,9 +10,13 @@ namespace NJHTFinalProject
     {
         private GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
+        private SoundEffect _menuMusic;
+        private SoundEffect _buttonSelected;
+        private SoundEffectInstance _buttonSelectedIntance;
+        private SoundEffectInstance _menuInstance;
 
         // Declares all scenes
-        private StartScene startScene;
+        private MenuScene startScene;
         private GameScene gameScene;
 
         private void HideAllScenes()
@@ -26,8 +31,26 @@ namespace NJHTFinalProject
         public GameScreen()
         {
             _graphics = new GraphicsDeviceManager(this);
+
+            _graphics.IsFullScreen = true;
+            
+            
+
+            _graphics.GraphicsProfile = GraphicsProfile.HiDef;
+
+            if (_graphics.IsFullScreen)
+            {
+                _graphics.PreferredBackBufferWidth = 1920;
+                _graphics.PreferredBackBufferHeight = 1080;
+                _graphics.ApplyChanges();
+            }
+            else
+            {
+                Window.AllowUserResizing = true;
+            }
+
             Content.RootDirectory = "Content";
-            IsMouseVisible = false;
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -41,18 +64,28 @@ namespace NJHTFinalProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            startScene = new StartScene(this);
+            startScene = new MenuScene(this);
             gameScene = new GameScene(this);
+
+            _menuMusic = Content.Load<SoundEffect>("Sounds/MenuMusic");
+            _buttonSelected = Content.Load<SoundEffect>("Sounds/ButtonSelected");
 
             this.Components.Add(startScene);
             this.Components.Add(gameScene);
+
+            _menuInstance = _menuMusic.CreateInstance();
+            _menuInstance.IsLooped = true;
+            _menuInstance.Play();
+
+
+
+            _buttonSelectedIntance = _buttonSelected.CreateInstance();
 
             startScene.Show();
         }
 
         protected override void Update(GameTime gameTime)
         {
-
             int selectedIndex = startScene.Menu.SelectedIndex;
 
             if (startScene.Enabled)
@@ -62,24 +95,39 @@ namespace NJHTFinalProject
                     || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) {
                     if (selectedIndex == 0)
                     {
+                        _buttonSelectedIntance.Play();
+
                         HideAllScenes();
-                        gameScene.Show();
+                        gameScene.Show(); // Goes to play scene
+                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 1)
                     {
-                        HideAllScenes();
+                        _buttonSelectedIntance.Play();
+
+                        HideAllScenes(); // Goes to options scene
+                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 2)
                     {
-                        HideAllScenes();
+                        _buttonSelectedIntance.Play();
+
+                        HideAllScenes(); // Goes to help scene
+                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 3)
                     {
-                        HideAllScenes();
+                        _buttonSelectedIntance.Play();
+
+                        HideAllScenes(); // Goes to about scene
+                        _menuInstance.Stop();
                     }
                     else if (selectedIndex == 4)
                     {
-                        this.Exit();
+                        _buttonSelectedIntance.Play();
+                        _menuInstance.Stop();
+
+                        Exit(); // Exits the program
                     }
                 }
             }
@@ -90,6 +138,7 @@ namespace NJHTFinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+
             base.Draw(gameTime);
         }
     }
