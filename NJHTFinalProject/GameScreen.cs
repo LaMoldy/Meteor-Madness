@@ -19,6 +19,7 @@ namespace NJHTFinalProject
         private MenuScene startScene;
         private GameScene gameScene;
         private AboutScene aboutScene;
+        private HelpScene helpScene;
 
         private void HideAllScenes()
         {
@@ -73,6 +74,7 @@ namespace NJHTFinalProject
             startScene = new MenuScene(this);
             gameScene = new GameScene(this);
             aboutScene = new AboutScene(this);
+            helpScene = new HelpScene(this);
 
             _menuMusic = Content.Load<SoundEffect>("Sounds/MenuMusic");
             _buttonSelected = Content.Load<SoundEffect>("Sounds/ButtonSelected");
@@ -80,12 +82,11 @@ namespace NJHTFinalProject
             this.Components.Add(startScene);
             this.Components.Add(gameScene);
             this.Components.Add(aboutScene);
+            this.Components.Add(helpScene);
 
             _menuInstance = _menuMusic.CreateInstance();
             _menuInstance.IsLooped = true;
             _menuInstance.Play();
-
-
 
             _buttonSelectedIntance = _buttonSelected.CreateInstance();
 
@@ -121,6 +122,7 @@ namespace NJHTFinalProject
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes(); // Goes to help scene
+                        helpScene.Show();
                     }
                     else if (selectedIndex == 3)
                     {
@@ -146,6 +148,17 @@ namespace NJHTFinalProject
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     aboutScene.Hide();
+                    startScene.Show();
+                }
+            }
+            else if (helpScene.Enabled)
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+                if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
+                {
+                    helpScene.Hide();
                     startScene.Show();
                 }
             }
