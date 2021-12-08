@@ -102,17 +102,25 @@ namespace NJHTFinalProject
         {
             int selectedIndex = startScene.Menu.SelectedIndex;
 
+            
+
             if (startScene.Enabled)
             {
+                
+
                 KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.Enter) 
-                    || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed) {
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+                
+
+                if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
+                    || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released)) {
                     if (selectedIndex == 0)
                     {
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes();
-                        gameOverScene.Show(); // Goes to play scene
+                        gameScene.Show(); // Goes to play scene
                         _menuInstance.Stop();
                     }
                     else if (selectedIndex == 1)
@@ -143,7 +151,11 @@ namespace NJHTFinalProject
 
                         Exit(); // Exits the program
                     }
+
+                    
                 }
+                oldGPState = gamePadState;
+                oldState = keyboardState;
             }
             else if (aboutScene.Enabled)
             {
@@ -170,9 +182,23 @@ namespace NJHTFinalProject
             {
                 KeyboardState keyboardState = Keyboard.GetState();
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                if (keyboardState.IsKeyDown(Keys.Space) || gamePadState.Buttons.A == ButtonState.Pressed)
+                if ((keyboardState.IsKeyDown(Keys.Enter) || oldState.IsKeyUp(Keys.Enter)) || (gamePadState.Buttons.A == ButtonState.Pressed) && oldGPState.Buttons.A == ButtonState.Released)
                 {
                     gameOverScene.Hide();
+                    startScene.Show();
+                }
+                oldState = keyboardState;
+                oldGPState = gamePadState;
+            }
+            else if (gameScene.Enabled)
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
+                {
+
+                    gameScene.Hide();
+                    gameScene.GameComponent.Score = 0;
                     startScene.Show();
                 }
             }
