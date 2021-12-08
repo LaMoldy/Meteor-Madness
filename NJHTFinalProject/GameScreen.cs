@@ -14,12 +14,15 @@ namespace NJHTFinalProject
         private SoundEffect _buttonSelected;
         private SoundEffectInstance _buttonSelectedIntance;
         private SoundEffectInstance _menuInstance;
+        private KeyboardState oldState;
+        private GamePadState oldGPState;
 
         // Declares all scenes
         private MenuScene startScene;
         private GameScene gameScene;
         private AboutScene aboutScene;
         private HelpScene helpScene;
+        private GameOverScene gameOverScene;
 
         private void HideAllScenes()
         {
@@ -36,7 +39,7 @@ namespace NJHTFinalProject
 
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.IsFullScreen = false;
+            _graphics.IsFullScreen = true;
             
             
 
@@ -75,6 +78,7 @@ namespace NJHTFinalProject
             gameScene = new GameScene(this);
             aboutScene = new AboutScene(this);
             helpScene = new HelpScene(this);
+            gameOverScene = new GameOverScene(this);
 
             _menuMusic = Content.Load<SoundEffect>("Sounds/MenuMusic");
             _buttonSelected = Content.Load<SoundEffect>("Sounds/ButtonSelected");
@@ -83,6 +87,7 @@ namespace NJHTFinalProject
             this.Components.Add(gameScene);
             this.Components.Add(aboutScene);
             this.Components.Add(helpScene);
+            this.Components.Add(gameOverScene);
 
             _menuInstance = _menuMusic.CreateInstance();
             _menuInstance.IsLooped = true;
@@ -107,7 +112,7 @@ namespace NJHTFinalProject
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes();
-                        gameScene.Show(); // Goes to play scene
+                        gameOverScene.Show(); // Goes to play scene
                         _menuInstance.Stop();
                     }
                     else if (selectedIndex == 1)
@@ -144,7 +149,7 @@ namespace NJHTFinalProject
             {
                 KeyboardState keyboardState = Keyboard.GetState();
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                
+
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     aboutScene.Hide();
@@ -155,10 +160,19 @@ namespace NJHTFinalProject
             {
                 KeyboardState keyboardState = Keyboard.GetState();
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     helpScene.Hide();
+                    startScene.Show();
+                }
+            }
+            else if (gameOverScene.Enabled)
+            {
+                KeyboardState keyboardState = Keyboard.GetState();
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                if (keyboardState.IsKeyDown(Keys.Space) || gamePadState.Buttons.A == ButtonState.Pressed)
+                {
+                    gameOverScene.Hide();
                     startScene.Show();
                 }
             }
