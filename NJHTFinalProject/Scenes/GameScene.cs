@@ -12,6 +12,7 @@ namespace NJHTFinalProject.Scenes
     class GameScene : SceneManager
     {
         public GameComponent GameComponent { get; set; }
+   
 
         private SpriteBatch _spriteBatch;
 
@@ -20,8 +21,8 @@ namespace NJHTFinalProject.Scenes
 
         public GameScene(Game game) : base(game)
         {
-            const int startingXCoord = 150;
-            const int startingYCoord = 100;
+            int startingXCoord = (int)Shared.stage.X / 2 -250;
+            int startingYCoord =(int)Shared.stage.Y / 2 - 200;
 
             _position.X = startingXCoord;
             _position.Y = startingYCoord;
@@ -30,11 +31,14 @@ namespace NJHTFinalProject.Scenes
             _spriteBatch = g._spriteBatch;
 
             Texture2D spaceship = g.Content.Load<Texture2D>("Images/Spaceship");
-            Texture2D background = g.Content.Load<Texture2D>("Images/Space/Space_Stars1");
+            Texture2D background = g.Content.Load<Texture2D>("Images/Space/Space_Stars10");
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
             SpriteFont spriteFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
+            Texture2D meteor = g.Content.Load<Texture2D>("Images/Meteor");
+            Texture2D healthPlanet = g.Content.Load<Texture2D>("Images/HealthPlanet");
 
-            GameComponent = new Components.GameComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont);
+            GameComponent = new GameComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet);
+
             this.Components.Add(GameComponent);
         }
     }

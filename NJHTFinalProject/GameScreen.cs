@@ -24,6 +24,8 @@ namespace NJHTFinalProject
         private HelpScene helpScene;
         private GameOverScene gameOverScene;
 
+        private int count = 0;
+
         private void HideAllScenes()
         {
             SceneManager gs = null;
@@ -39,7 +41,7 @@ namespace NJHTFinalProject
 
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = false;
             
             
 
@@ -191,7 +193,7 @@ namespace NJHTFinalProject
                 oldGPState = gamePadState;
             }
             else if (gameScene.Enabled)
-            {
+            { 
                 KeyboardState keyboardState = Keyboard.GetState();
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
@@ -208,7 +210,16 @@ namespace NJHTFinalProject
 
         protected override void Draw(GameTime gameTime)
         {
+
+
+            _spriteBatch.Begin();
+
+
+            _spriteBatch.End();
+
             GraphicsDevice.Clear(Color.Black);
+
+            count++;
 
             base.Draw(gameTime);
         }
