@@ -28,7 +28,6 @@ namespace NJHTFinalProject
 
         private void HideAllScenes()
         {
-            SceneManager gs = null;
             foreach (SceneManager component in Components)
             {
                 component.Hide();
@@ -68,6 +67,8 @@ namespace NJHTFinalProject
         protected override void Initialize()
         {
             Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            Shared.PlayerLives = 3;
+            Shared.PlayerScore = 0;
             
             base.Initialize();
         }
@@ -104,17 +105,11 @@ namespace NJHTFinalProject
         {
             int selectedIndex = startScene.Menu.SelectedIndex;
 
-            
+            KeyboardState keyboardState = Keyboard.GetState();
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
             if (startScene.Enabled)
             {
-                
-
-                KeyboardState keyboardState = Keyboard.GetState();
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
-                
-
                 if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
                     || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released)) {
                     if (selectedIndex == 0)
@@ -153,17 +148,12 @@ namespace NJHTFinalProject
 
                         Exit(); // Exits the program
                     }
-
-                    
                 }
                 oldGPState = gamePadState;
                 oldState = keyboardState;
             }
             else if (aboutScene.Enabled)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     aboutScene.Hide();
@@ -172,8 +162,6 @@ namespace NJHTFinalProject
             }
             else if (helpScene.Enabled)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     helpScene.Hide();
@@ -182,45 +170,44 @@ namespace NJHTFinalProject
             }
             else if (gameOverScene.Enabled)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                if ((keyboardState.IsKeyDown(Keys.Enter) || oldState.IsKeyUp(Keys.Enter)) || (gamePadState.Buttons.A == ButtonState.Pressed) && oldGPState.Buttons.A == ButtonState.Released)
+                if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter)) || (gamePadState.Buttons.A == ButtonState.Pressed) && oldGPState.Buttons.A == ButtonState.Released)
                 {
                     gameOverScene.Hide();
                     startScene.Show();
+                    Shared.PlayerScore = 0;
                 }
-                oldState = keyboardState;
-                oldGPState = gamePadState;
+                
             }
             else if (gameScene.Enabled)
             { 
-                KeyboardState keyboardState = Keyboard.GetState();
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
-
                     gameScene.Hide();
-                    gameScene.GameComponent.Score = 0;
                     startScene.Show();
                 }
+
+                if (Shared.PlayerLives == 0)
+                {
+                    HideAllScenes();
+                    Shared.PlayerLives = 3;
+                    gameOverScene.Show();
+                    _menuInstance.Play();
+                }
             }
+
+            oldState = keyboardState;
+            oldGPState = gamePadState;
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
-
             _spriteBatch.Begin();
-
-
             _spriteBatch.End();
-
             GraphicsDevice.Clear(Color.Black);
-
             count++;
-
             base.Draw(gameTime);
         }
     }

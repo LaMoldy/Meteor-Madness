@@ -69,9 +69,9 @@ namespace NJHTFinalProject.Components
             var meteorBounds = this.GetBounds();
             var playerBounds = Shared.GetBounds();
 
-            if (playerBounds.Intersects(meteorBounds))
+            if (playerBounds.Intersects(meteorBounds) && !playerHit)
             {
-                _gameScreenComponent.Lives--;
+                Shared.PlayerLives--;
                 playerHit = true;
             }
 

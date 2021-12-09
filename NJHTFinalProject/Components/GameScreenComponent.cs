@@ -21,9 +21,6 @@ namespace NJHTFinalProject.Components
         private Texture2D _healthPlanet;
         private GameScene _gameScene;
         private int counter = 0;
-        public int Lives { get; set; }
-
-        public int Score { get; set; }
 
         public GameScreenComponent(Game game,
             SpriteBatch spriteBatch,
@@ -46,9 +43,7 @@ namespace NJHTFinalProject.Components
             _healthPlanet = healthPlanet;
             _gameScene = gameScene;
 
-            Score = 0;
             counter = 0;
-            Lives = 3;
         }
 
         public override void Draw(GameTime gameTime)
@@ -65,7 +60,7 @@ namespace NJHTFinalProject.Components
 
             
 
-            while (lifeCounter < Lives)
+            while (lifeCounter < Shared.PlayerLives)
             {
                 _spriteBatch.Draw(_healthPlanet, planetLocation, Color.White);
 
@@ -80,12 +75,12 @@ namespace NJHTFinalProject.Components
 
             if (counter == 60)
             {
-                Score += (int)Math.Round(Math.Log(76) * new Random().Next(50));
-                _spriteBatch.DrawString(_spriteFont, "Score: " + Score, new Vector2(Shared.stage.X - 200, 20), Color.White);
+                Shared.PlayerScore += (int)Math.Round(Math.Log(76) * new Random().Next(50));
+                _spriteBatch.DrawString(_spriteFont, "Score: " + Shared.PlayerScore, new Vector2(Shared.stage.X - 200, 20), Color.White);
                 counter = 0;
             }
 
-            _spriteBatch.DrawString(_spriteFont, "Score: " + Score, new Vector2(Shared.stage.X - 200, 20), Color.White);
+            _spriteBatch.DrawString(_spriteFont, "Score: " + Shared.PlayerScore, new Vector2(Shared.stage.X - 200, 20), Color.White);
             _spriteBatch.End();
 
             foreach (var meteors in _gameScene.MeteorComponents)

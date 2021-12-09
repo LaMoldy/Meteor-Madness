@@ -41,9 +41,10 @@ namespace NJHTFinalProject.Scenes
             _regularFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
 
             _header = "Game Over!";
-            _score = "Your score was: " + Score;
-            _controllerMessage = "Press ENTER or Press the A button to continue!";
 
+            _score = "Your score was: ";
+            _controllerMessage = "Press ENTER or Press the A button to continue!";
+           
             _position = new Vector2(700, 450);
 
 
