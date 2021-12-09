@@ -16,6 +16,7 @@ namespace NJHTFinalProject.Components
         private Rectangle _screenSize;
         private SoundEffect _buttonSound;
         private Vector2 _position;
+        private SpriteFont _font;
 
         private KeyboardState oldState;
         private GamePadState oldGPState;
@@ -27,7 +28,8 @@ namespace NJHTFinalProject.Components
             Texture2D background,
             Rectangle screenSize,
             SoundEffect buttonSound,
-            Texture2D[] menuButtons) : base(game)
+            Texture2D[] menuButtons,
+            SpriteFont font) : base(game)
         {
             _spriteBatch = spriteBatch;
             _position = new Vector2(Shared.stage.X / 2 - 150, Shared.stage.Y / 2 - 50);
@@ -35,6 +37,7 @@ namespace NJHTFinalProject.Components
             _background = background;
             _buttonSound = buttonSound;
             _menuButtons = menuButtons;
+            _font = font;
         }
 
         public override void Draw(GameTime gameTime)
@@ -44,12 +47,13 @@ namespace NJHTFinalProject.Components
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(_background, _screenSize, Color.White);
+            _spriteBatch.DrawString(_font, "Meteor Madness", new Vector2(690, 170), Color.White);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if (SelectedIndex == i)
                 {
-                    _spriteBatch.Draw(_menuButtons[i + 5], tempPosition, Color.White);
+                    _spriteBatch.Draw(_menuButtons[i + 4], tempPosition, Color.White);
                     tempPosition.Y += 90;
                 }
                 else
@@ -79,7 +83,7 @@ namespace NJHTFinalProject.Components
 
                 instance.Play();
 
-                if (SelectedIndex == 5)
+                if (SelectedIndex == 4)
                 {
                     SelectedIndex = 0;
                 }
@@ -94,7 +98,7 @@ namespace NJHTFinalProject.Components
                 instance.Play();
                 if (SelectedIndex == -1)
                 {
-                    SelectedIndex = 4;
+                    SelectedIndex = 3;
                 }
             }
 
