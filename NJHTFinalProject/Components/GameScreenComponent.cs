@@ -75,7 +75,7 @@ namespace NJHTFinalProject.Components
 
             if (counter == 60)
             {
-                Shared.PlayerScore += (int)Math.Round(Math.Log(76) * new Random().Next(50));
+                Shared.PlayerScore += (int)Math.Round(Math.Log(76) * new Random().Next(50) + 1);
                 _spriteBatch.DrawString(_spriteFont, "Score: " + Shared.PlayerScore, new Vector2(Shared.stage.X - 200, 20), Color.White);
                 counter = 0;
             }

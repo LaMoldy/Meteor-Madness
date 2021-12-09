@@ -137,14 +137,14 @@ namespace NJHTFinalProject
                         HideAllScenes(); // Goes to help scene
                         helpScene.Show();
                     }
-                    else if (selectedIndex == 3)
+                    else if (selectedIndex == 2)
                     {
                         _buttonSelectedIntance.Play();
                         HideAllScenes(); // Goes to about scene
 
                         aboutScene.Show();
                     }
-                    else if (selectedIndex == 4)
+                    else if (selectedIndex == 3)
                     {
                         _buttonSelectedIntance.Play();
                         _menuInstance.Stop();
@@ -190,7 +190,7 @@ namespace NJHTFinalProject
                     startScene.Show();
                 }
 
-                if (Shared.PlayerLives == 0)
+                if (Shared.PlayerLives == -1)
                 {
                     HideAllScenes();
                     Shared.PlayerLives = 3;

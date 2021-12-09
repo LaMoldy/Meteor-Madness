@@ -22,8 +22,8 @@ namespace NJHTFinalProject.Scenes
 
         public GameScene(Game game) : base(game)
         {
-            int startingXCoord = (int)Shared.stage.X / 2 -250;
-            int startingYCoord =(int)Shared.stage.Y / 2 - 200;
+            int startingXCoord = (int)Shared.stage.X / 2 -150;
+            int startingYCoord =(int)Shared.stage.Y / 2 - 120;
 
             _position.X = startingXCoord;
             _position.Y = startingYCoord;
