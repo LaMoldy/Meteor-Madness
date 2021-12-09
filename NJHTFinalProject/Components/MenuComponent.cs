@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 
 namespace NJHTFinalProject.Components
 {
@@ -20,7 +17,7 @@ namespace NJHTFinalProject.Components
 
         private KeyboardState oldState;
         private GamePadState oldGPState;
-        
+
         public int SelectedIndex { get; set; }
 
         public MenuComponent(Game game,
@@ -75,7 +72,7 @@ namespace NJHTFinalProject.Components
             KeyboardState keyboardState = Keyboard.GetState();
             GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-            if ((keyboardState.IsKeyDown(Keys.Down) && oldState.IsKeyUp(Keys.Down)) 
+            if ((keyboardState.IsKeyDown(Keys.Down) && oldState.IsKeyUp(Keys.Down))
                 || (GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed && oldGPState.DPad.Down == ButtonState.Released)
                 || (GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0 && oldGPState.ThumbSticks.Left.Y == 0))
             {

@@ -1,20 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NJHTFinalProject.Components;
-using NJHTFinalProject.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NJHTFinalProject.Scenes
 {
-    class LeaderBoardScene : SceneManager
+    public class LeaderBoardScene : SceneManager
     {
         private LeaderBoardComponent LeaderBoardComponent { get; set; }
 
         private SpriteBatch _spriteBatch;
 
         private Vector2 _position;
+
         public LeaderBoardScene(Game game) : base(game)
         {
             const int startingXCoord = 750;
@@ -40,5 +37,3 @@ namespace NJHTFinalProject.Scenes
         }
     }
 }
-
-

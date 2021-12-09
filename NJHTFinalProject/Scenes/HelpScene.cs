@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using NJHTFinalProject.Components;
 
 namespace NJHTFinalProject.Scenes
 {
-    class HelpScene : SceneManager
+    public class HelpScene : SceneManager
     {
         private SpriteBatch _spriteBatch;
         private Texture2D _background;

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NJHTFinalProject.Scenes;
+using System;
 
 namespace NJHTFinalProject.Components
 {
@@ -29,7 +26,7 @@ namespace NJHTFinalProject.Components
             Texture2D background,
             Rectangle screenSize,
             SpriteFont spriteFont,
-            Texture2D meteor, 
+            Texture2D meteor,
             Texture2D healthPlanet,
             GameScene gameScene) : base(game)
         {
@@ -49,16 +46,13 @@ namespace NJHTFinalProject.Components
         public override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
-            
-            
+
             _spriteBatch.Draw(_background, _screenSize, Color.White);
             _spriteBatch.Draw(_spaceship, new Rectangle((int)_spaceShipPosition.X, (int)_spaceShipPosition.Y, 200, 250), Color.White);
 
             int lifeCounter = 0;
 
             Vector2 planetLocation = new Vector2(Shared.stage.X - 145, Shared.stage.Y / 2 + 397);
-
-            
 
             while (lifeCounter < Shared.PlayerLives)
             {

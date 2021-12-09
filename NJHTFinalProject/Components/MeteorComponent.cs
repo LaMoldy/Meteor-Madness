@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace NJHTFinalProject.Components
 {
@@ -17,7 +13,7 @@ namespace NJHTFinalProject.Components
         private int direction = 0;
         private Rectangle _hitBox;
 
-        bool playerHit = false;
+        private bool playerHit = false;
 
         private GameScreenComponent _gameScreenComponent;
 
@@ -53,8 +49,6 @@ namespace NJHTFinalProject.Components
 
         public override void Update(GameTime gameTime)
         {
-            
-
             if (direction == 1)
             {
                 _hitBox.X += 2;

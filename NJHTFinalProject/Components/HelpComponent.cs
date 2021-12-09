@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 
 namespace NJHTFinalProject.Components
 {
-    class HelpComponent : DrawableGameComponent
+    public class HelpComponent : DrawableGameComponent
     {
         private SpriteBatch _spriteBatch;
         private Texture2D _background;
         private Rectangle _screenSize;
         private SpriteFont _regularFont;
-
 
         public HelpComponent(Game game,
             SpriteBatch spriteBatch,
@@ -40,7 +34,6 @@ namespace NJHTFinalProject.Components
             string controllerControls = "Left stick up: Move up\nLeft stick left: Move left\nLeft stick down: Move down\nLeft stick right: Move right";
 
             _spriteBatch.DrawString(_regularFont, mouseHeader + mouseControls + controllerHeader + controllerControls, new Vector2(Shared.stage.X / 2 - 150, 250), Color.White);
-            
 
             _spriteBatch.End();
 

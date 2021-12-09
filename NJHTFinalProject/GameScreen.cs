@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject
@@ -19,6 +19,7 @@ namespace NJHTFinalProject
 
         // Declares all scenes
         private MenuScene startScene;
+
         private GameScene gameScene;
         private LeaderBoardScene leaderBoardScene;
         private AboutScene aboutScene;
@@ -42,8 +43,6 @@ namespace NJHTFinalProject
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.IsFullScreen = false;
-            
-            
 
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
@@ -70,7 +69,7 @@ namespace NJHTFinalProject
             Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
             Shared.PlayerLives = 3;
             Shared.PlayerScore = 0;
-            
+
             base.Initialize();
         }
 
@@ -113,7 +112,8 @@ namespace NJHTFinalProject
             if (startScene.Enabled)
             {
                 if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
-                    || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released)) {
+                    || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released))
+                {
                     if (selectedIndex == 0)
                     {
                         _buttonSelectedIntance.Play();
@@ -179,11 +179,9 @@ namespace NJHTFinalProject
                     startScene.Show();
                     Shared.PlayerScore = 0;
                 }
-                
             }
             else if (gameScene.Enabled)
-            { 
-                
+            {
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     gameScene.Hide();
