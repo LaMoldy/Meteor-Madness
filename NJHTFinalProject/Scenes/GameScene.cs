@@ -57,10 +57,10 @@ namespace NJHTFinalProject.Scenes
             _spriteBatch = g._spriteBatch;
             Random rand = new Random();
 
-            Vector2 position = new Vector2(rand.Next((int)Shared.stage.X), rand.Next((int)Shared.stage.Y));
+            Vector2 position = new Vector2(rand.Next((int)Shared.stage.X), -7);
 
             Rectangle hitBox = new Rectangle((int)position.X, (int)position.Y, 100, 100);
-            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox);
+            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox, GameComponent);
 
             MeteorComponents.Add(meteorSprite);
         }
