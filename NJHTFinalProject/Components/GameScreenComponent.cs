@@ -105,30 +105,31 @@ namespace NJHTFinalProject.Components
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
                 direction = new Vector2(0, -1);
-                _spaceShipPosition.Y -= 5;
+                _spaceShipPosition.Y -= 10;
                 Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
             {
                 direction = new Vector2(0, 1);
-                _spaceShipPosition.Y += 5;
+                _spaceShipPosition.Y += 10;
                 Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
             {
                 direction = new Vector2(-1, 0);
-                _spaceShipPosition.X -= 5;
+                _spaceShipPosition.X -= 10;
                 Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
             {
                 direction = new Vector2(1, 0);
-                _spaceShipPosition.X += 5;
+                _spaceShipPosition.X += 10;
                 Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
             }
+            //parallaxing
             foreach (Background background in _background)
                 background.Update(gameTime, direction, GraphicsDevice.Viewport);
             base.Update(gameTime);
