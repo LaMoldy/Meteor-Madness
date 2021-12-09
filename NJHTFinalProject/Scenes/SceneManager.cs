@@ -59,7 +59,7 @@ namespace NJHTFinalProject.Scenes
             DrawableGameComponent gameComponent = null;
 
             // Goes through the component list
-            foreach (Microsoft.Xna.Framework.GameComponent component in Components)
+            foreach (GameComponent component in Components)
             {
                 // Checks to see if the component is a drawable component
                 if (component is DrawableGameComponent)

@@ -5,10 +5,11 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject.Components
 {
-    public class GameComponent : DrawableGameComponent
+    public class GameScreenComponent : DrawableGameComponent
     {
         private SpriteBatch _spriteBatch;
         private Vector2 _spaceShipPosition;
@@ -18,12 +19,13 @@ namespace NJHTFinalProject.Components
         private SpriteFont _spriteFont;
         private Texture2D _meteor;
         private Texture2D _healthPlanet;
+        private GameScene _gameScene;
         private int counter = 0;
         private int Lives { get; set; }
 
         public int Score { get; set; }
 
-        public GameComponent(Game game,
+        public GameScreenComponent(Game game,
             SpriteBatch spriteBatch,
             Vector2 position,
             Texture2D spaceship,
@@ -31,7 +33,8 @@ namespace NJHTFinalProject.Components
             Rectangle screenSize,
             SpriteFont spriteFont,
             Texture2D meteor, 
-            Texture2D healthPlanet) : base(game)
+            Texture2D healthPlanet,
+            GameScene gameScene) : base(game)
         {
             _spriteBatch = spriteBatch;
             _spaceShipPosition = position;
@@ -41,6 +44,7 @@ namespace NJHTFinalProject.Components
             _spriteFont = spriteFont;
             _meteor = meteor;
             _healthPlanet = healthPlanet;
+            _gameScene = gameScene;
 
             Score = 0;
             counter = 0;
@@ -59,6 +63,8 @@ namespace NJHTFinalProject.Components
 
             Vector2 planetLocation = new Vector2(Shared.stage.X - 145, Shared.stage.Y / 2 + 397);
 
+            
+
             while (lifeCounter < Lives)
             {
                 _spriteBatch.Draw(_healthPlanet, planetLocation, Color.White);
@@ -67,20 +73,25 @@ namespace NJHTFinalProject.Components
                 lifeCounter++;
             }
 
-            if (counter % 12 == 0)
+            if (counter == 23)
             {
-                //_spriteBatch.Draw(_meteor, new Vector2(new Random().Next((int)Shared.stage.X), new Random().Next((int)Shared.stage.Y)), Color.White);
+                _gameScene.CreateMeteor();
             }
 
             if (counter == 60)
             {
-                Score += (int)Math.Round(Math.Log(200) * new Random().Next(50));
+                Score += (int)Math.Round(Math.Log(76) * new Random().Next(50));
                 _spriteBatch.DrawString(_spriteFont, "Score: " + Score, new Vector2(Shared.stage.X - 200, 20), Color.White);
                 counter = 0;
             }
 
             _spriteBatch.DrawString(_spriteFont, "Score: " + Score, new Vector2(Shared.stage.X - 200, 20), Color.White);
             _spriteBatch.End();
+
+            foreach (var meteors in _gameScene.MeteorComponents)
+            {
+                meteors.Draw(gameTime);
+            }
 
             counter++;
 

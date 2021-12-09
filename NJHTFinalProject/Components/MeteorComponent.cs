@@ -16,6 +16,7 @@ namespace NJHTFinalProject.Components
         private Rectangle _hitBox;
 
         public MeteorComponent(Game game,
+            SpriteBatch spriteBatch,
             Texture2D meteor,
             Vector2 position,
             Rectangle hitBox) : base(game)
@@ -23,6 +24,7 @@ namespace NJHTFinalProject.Components
             _meteor = meteor;
             _position = position;
             _hitBox = hitBox;
+            _spriteBatch = spriteBatch;
         }
 
         public override void Draw(GameTime gameTime)

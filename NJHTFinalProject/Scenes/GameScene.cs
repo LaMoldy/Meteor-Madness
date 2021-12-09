@@ -5,15 +5,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NJHTFinalProject.Components;
-using GameComponent = NJHTFinalProject.Components.GameComponent;
 
 namespace NJHTFinalProject.Scenes
 {
-    class GameScene : SceneManager
+    public class GameScene : SceneManager
     {
-        public GameComponent GameComponent { get; set; }
-   
+        public GameScreenComponent GameComponent { get; set; }
 
+        private Texture2D meteor;
+        private Game _game;
+        public List<MeteorComponent> MeteorComponents { get; set; }
         private SpriteBatch _spriteBatch;
 
         private Vector2 _position;
@@ -34,12 +35,34 @@ namespace NJHTFinalProject.Scenes
             Texture2D background = g.Content.Load<Texture2D>("Images/Space/Space_Stars10");
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
             SpriteFont spriteFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
-            Texture2D meteor = g.Content.Load<Texture2D>("Images/Meteor");
             Texture2D healthPlanet = g.Content.Load<Texture2D>("Images/HealthPlanet");
+            meteor = g.Content.Load<Texture2D>("Images/Meteor/Meteor/rotationY1");
 
-            GameComponent = new GameComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet);
+            _game = game;
+
+            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this);
+            MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
+            
+            foreach(var meteors in MeteorComponents)
+            {
+                this.Components.Add(meteors);
+            }
+        }
+
+        public void CreateMeteor()
+        {
+            GameScreen g = (GameScreen)_game;
+            _spriteBatch = g._spriteBatch;
+            Random rand = new Random();
+
+            Vector2 position = new Vector2(rand.Next((int)Shared.stage.X), rand.Next((int)Shared.stage.Y));
+
+            Rectangle hitBox = new Rectangle((int)position.X, (int)position.Y, 100, 100);
+            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox);
+
+            MeteorComponents.Add(meteorSprite);
         }
     }
 }
