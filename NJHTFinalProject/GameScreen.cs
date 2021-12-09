@@ -47,6 +47,8 @@ namespace NJHTFinalProject
 
             _graphics.IsFullScreen = false;
 
+
+
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             if (_graphics.IsFullScreen)
@@ -182,11 +184,15 @@ namespace NJHTFinalProject
                 {
                     gameOverScene.Hide();
                     startScene.Show();
+                    Shared.LastGameScore = Shared.PlayerScore;
+                    leaderBoardScene.SaveHighscore(Shared.LastGameScore);
                     Shared.PlayerScore = 0;
                 }
+                
             }
             else if (gameScene.Enabled)
-            {
+            { 
+                
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     gameScene.Hide();
@@ -202,7 +208,14 @@ namespace NJHTFinalProject
                     MediaPlayer.Stop();
                 }
             }
-
+            else if (leaderBoardScene.Enabled)
+            {
+                if ((keyboardState.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) || (gamePadState.Buttons.B == ButtonState.Pressed) && oldGPState.Buttons.B == ButtonState.Released)
+                {
+                    HideAllScenes();
+                    startScene.Show();
+                }
+            }
             oldState = keyboardState;
             oldGPState = gamePadState;
 
