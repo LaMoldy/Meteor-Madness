@@ -42,8 +42,8 @@ namespace NJHTFinalProject
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.IsFullScreen = false;
-            
-            
+
+
 
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
@@ -70,7 +70,7 @@ namespace NJHTFinalProject
             Shared.stage = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
             Shared.PlayerLives = 3;
             Shared.PlayerScore = 0;
-            
+
             base.Initialize();
         }
 
@@ -113,7 +113,8 @@ namespace NJHTFinalProject
             if (startScene.Enabled)
             {
                 if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
-                    || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released)) {
+                    || (gamePadState.Buttons.A == ButtonState.Pressed && oldGPState.Buttons.A == ButtonState.Released))
+                {
                     if (selectedIndex == 0)
                     {
                         _buttonSelectedIntance.Play();
@@ -177,13 +178,15 @@ namespace NJHTFinalProject
                 {
                     gameOverScene.Hide();
                     startScene.Show();
+                    Shared.LastGameScore = Shared.PlayerScore;
+                    leaderBoardScene.SaveHighscore(Shared.LastGameScore);
                     Shared.PlayerScore = 0;
                 }
-                
+
             }
             else if (gameScene.Enabled)
-            { 
-                
+            {
+
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     gameScene.Hide();
@@ -198,7 +201,14 @@ namespace NJHTFinalProject
                     _menuInstance.Play();
                 }
             }
-
+            else if (leaderBoardScene.Enabled)
+            {
+                if ((keyboardState.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) || (gamePadState.Buttons.B == ButtonState.Pressed) && oldGPState.Buttons.B == ButtonState.Released)
+                {
+                    HideAllScenes();
+                    startScene.Show();
+                }
+            }
             oldState = keyboardState;
             oldGPState = gamePadState;
 

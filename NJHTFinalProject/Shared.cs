@@ -15,6 +15,8 @@ namespace NJHTFinalProject
 
         public static int PlayerScore;
 
+        public static int LastGameScore;
+
         public static int GetPlayerScore()
         {
             return PlayerScore;
