@@ -16,11 +16,9 @@ namespace NJHTFinalProject.Scenes
 
         private SpriteBatch _spriteBatch;
 
-        private ScoreManager _scoreManager;
-
-        private SpriteFont _font;
-
         private Vector2 _position;
+        private ScoreManager _scoreManager;
+        Random Random;
         public LeaderBoardScene(Game game) : base(game)
         {
             GameScreen g = (GameScreen)game;
@@ -28,7 +26,7 @@ namespace NJHTFinalProject.Scenes
             //Create new spritebatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _scoreManager = ScoreManager.Load();
-            _font = g.Content.Load<SpriteFont>("Fonts/regularFont");
+            //_font = g.Content.Load<SpriteFont>("Fonts/regularFont");
            
 
             ScoreManager.Save(_scoreManager);
@@ -56,6 +54,7 @@ namespace NJHTFinalProject.Scenes
         }
         public override void Initialize()
         {
+            Random = new Random();
             base.Initialize();
         }
          public void SaveHighscore(int score)

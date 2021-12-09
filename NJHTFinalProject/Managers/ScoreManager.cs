@@ -55,7 +55,10 @@ namespace NJHTFinalProject.Managers
             {
                 var serializer = new XmlSerializer(typeof(List<Score>));
                 serializer.Serialize(writer, scoreManager.Scores);
+                //writer.WriteLine(scoreManager.Scores);
             }
         }
+
+        //public static void SaveHighscore()
     }
 }

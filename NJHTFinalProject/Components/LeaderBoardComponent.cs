@@ -15,9 +15,6 @@ namespace NJHTFinalProject.Components
         private Vector2 _position;
         
         private SpriteFont _regularFont;
-        private string _authorOne;
-        private string _authorTwo;
-
         private ScoreManager _scoreManager;
 
 
@@ -57,6 +54,7 @@ namespace NJHTFinalProject.Components
 
         public override void Update(GameTime gameTime)
         {
+            ScoreManager.Save(_scoreManager);
             base.Update(gameTime);
 
         }
