@@ -98,7 +98,7 @@ namespace NJHTFinalProject.Components
                 instance.Play();
                 if (SelectedIndex == -1)
                 {
-                    SelectedIndex = 3;
+                    SelectedIndex = 4;
                 }
             }
 

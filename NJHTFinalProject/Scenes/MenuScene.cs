@@ -18,7 +18,7 @@ namespace NJHTFinalProject.Scenes
 
         private SpriteBatch _spriteBatch;
 
-        Texture2D[] menuButtons = new Texture2D[8];
+        Texture2D[] menuButtons = new Texture2D[10];
 
         public MenuScene(Game game) : base(game)
         {
@@ -38,6 +38,9 @@ namespace NJHTFinalProject.Scenes
             menuButtons[7] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButtonSelected");
             menuButtons[8] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButtonSelected");
             menuButtons[9] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButtonSelected");
+
+
+            SpriteFont font = g.Content.Load<SpriteFont>("Fonts/titleFont");
 
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
 
