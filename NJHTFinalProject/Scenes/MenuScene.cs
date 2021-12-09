@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using NJHTFinalProject.Components;
-
-
-
 
 namespace NJHTFinalProject.Scenes
 {
@@ -18,7 +11,7 @@ namespace NJHTFinalProject.Scenes
 
         private SpriteBatch _spriteBatch;
 
-        Texture2D[] menuButtons = new Texture2D[10];
+        private Texture2D[] menuButtons = new Texture2D[10];
 
         public MenuScene(Game game) : base(game)
         {
@@ -38,7 +31,6 @@ namespace NJHTFinalProject.Scenes
             menuButtons[7] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButtonSelected");
             menuButtons[8] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButtonSelected");
             menuButtons[9] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButtonSelected");
-
 
             SpriteFont font = g.Content.Load<SpriteFont>("Fonts/titleFont");
 

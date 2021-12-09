@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 
 namespace NJHTFinalProject.Components
 {
-    class GameOverComponent : DrawableGameComponent
+    public class GameOverComponent : DrawableGameComponent
     {
-        SpriteBatch _spriteBatch;
-        SpriteFont _headerFont;
-        SpriteFont _regularFont;
+        private SpriteBatch _spriteBatch;
+        private SpriteFont _headerFont;
+        private SpriteFont _regularFont;
 
-        Rectangle _screenSize;
+        private Rectangle _screenSize;
 
-        Texture2D _background;
+        private Texture2D _background;
 
-        Vector2 _position;
+        private Vector2 _position;
 
-        string _header;
-        string _score;
-        string _controllerMessage;
+        private string _header;
+        private string _score;
+        private string _controllerMessage;
 
         public GameOverComponent(Game game,
             SpriteBatch spriteBatch,
@@ -45,7 +40,7 @@ namespace NJHTFinalProject.Components
             _score = score;
             _controllerMessage = controllerMessage;
         }
-        
+
         public override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();

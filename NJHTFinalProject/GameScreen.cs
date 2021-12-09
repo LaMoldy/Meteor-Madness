@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject
@@ -19,6 +19,7 @@ namespace NJHTFinalProject
 
         // Declares all scenes
         private MenuScene startScene;
+
         private GameScene gameScene;
         private LeaderBoardScene leaderBoardScene;
         private AboutScene aboutScene;
@@ -182,11 +183,11 @@ namespace NJHTFinalProject
                     leaderBoardScene.SaveHighscore(Shared.LastGameScore);
                     Shared.PlayerScore = 0;
                 }
-
+                
             }
             else if (gameScene.Enabled)
-            {
-
+            { 
+                
                 if (keyboardState.IsKeyDown(Keys.Escape) || gamePadState.Buttons.B == ButtonState.Pressed)
                 {
                     gameScene.Hide();

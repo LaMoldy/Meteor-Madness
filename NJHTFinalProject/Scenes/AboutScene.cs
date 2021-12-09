@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NJHTFinalProject.Components;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using NJHTFinalProject.Components;
 
 namespace NJHTFinalProject.Scenes
 {
-    class AboutScene : SceneManager
+    public class AboutScene : SceneManager
     {
         private AboutUsComponent AboutUsComponent { get; set; }
 
@@ -36,7 +32,7 @@ namespace NJHTFinalProject.Scenes
 
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
 
-            AboutUsComponent = new AboutUsComponent(game, _spriteBatch, background, authorFont, regularFont,  screenSize, _position, authorOne, authorTwo);
+            AboutUsComponent = new AboutUsComponent(game, _spriteBatch, background, authorFont, regularFont, screenSize, _position, authorOne, authorTwo);
 
             this.Components.Add(AboutUsComponent);
         }

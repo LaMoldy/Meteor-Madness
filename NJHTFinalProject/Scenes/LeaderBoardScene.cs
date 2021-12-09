@@ -17,15 +17,6 @@ namespace NJHTFinalProject.Scenes
         private SpriteBatch _spriteBatch;
 
         private Vector2 _position;
-
-        private SpriteFont _font;
-
-        private ScoreManager _scoreManager;
-
-        private static Random Random;
-
-        
-
         public LeaderBoardScene(Game game) : base(game)
         {
             GameScreen g = (GameScreen)game;
@@ -76,5 +67,3 @@ namespace NJHTFinalProject.Scenes
         
     }
 }
-
-

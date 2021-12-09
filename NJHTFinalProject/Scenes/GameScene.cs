@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using NJHTFinalProject.Components;
+using System;
+using System.Collections.Generic;
 
 namespace NJHTFinalProject.Scenes
 {
@@ -19,11 +17,10 @@ namespace NJHTFinalProject.Scenes
 
         private Vector2 _position;
 
-
         public GameScene(Game game) : base(game)
         {
-            int startingXCoord = (int)Shared.stage.X / 2 -150;
-            int startingYCoord =(int)Shared.stage.Y / 2 - 120;
+            int startingXCoord = (int)Shared.stage.X / 2 - 150;
+            int startingYCoord = (int)Shared.stage.Y / 2 - 120;
 
             _position.X = startingXCoord;
             _position.Y = startingYCoord;
@@ -44,8 +41,8 @@ namespace NJHTFinalProject.Scenes
             MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
-            
-            foreach(var meteors in MeteorComponents)
+
+            foreach (var meteors in MeteorComponents)
             {
                 this.Components.Add(meteors);
             }

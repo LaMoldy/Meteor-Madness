@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace NJHTFinalProject.Scenes
 {
@@ -25,11 +21,11 @@ namespace NJHTFinalProject.Scenes
         }
 
         /// <summary>
-        /// Disables the game scene 
+        /// Disables the game scene
         /// </summary>
         public virtual void Hide()
         {
-            // Disables 
+            // Disables
             this.Enabled = false;
 
             // Makes invisible
