@@ -29,12 +29,12 @@ namespace NJHTFinalProject.Scenes
             SoundEffect buttonSound = g.Content.Load<SoundEffect>("Sounds/ButtonSound"); // SOURCE: https://www.youtube.com/watch?v=ILaQFzeuamU
 
             menuButtons[0] = g.Content.Load<Texture2D>("Images/MenuButtons/PlayButton");
-            menuButtons[1] = g.Content.Load<Texture2D>("Images/MenuButtons/OptionsButton");
+            menuButtons[1] = g.Content.Load<Texture2D>("Images/MenuButtons/LeaderBoardButton");
             menuButtons[2] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButton");
             menuButtons[3] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButton");
             menuButtons[4] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButton");
             menuButtons[5] = g.Content.Load<Texture2D>("Images/MenuButtons/PlayButtonSelected");
-            menuButtons[6] = g.Content.Load<Texture2D>("Images/MenuButtons/OptionsButtonSelected");
+            menuButtons[6] = g.Content.Load<Texture2D>("Images/MenuButtons/LeaderBoardButtonSelected");
             menuButtons[7] = g.Content.Load<Texture2D>("Images/MenuButtons/HelpButtonSelected");
             menuButtons[8] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButtonSelected");
             menuButtons[9] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButtonSelected");

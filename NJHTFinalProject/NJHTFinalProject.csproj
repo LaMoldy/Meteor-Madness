@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,7 +14,7 @@
     <Company>NJHT Studios</Company>
     <Description>The final project for the Game Programming and Data Structures course</Description>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Project_Key.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>ProjectKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />

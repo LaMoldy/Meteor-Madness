@@ -20,6 +20,7 @@ namespace NJHTFinalProject
         // Declares all scenes
         private MenuScene startScene;
         private GameScene gameScene;
+        private LeaderBoardScene leaderBoardScene;
         private AboutScene aboutScene;
         private HelpScene helpScene;
         private GameOverScene gameOverScene;
@@ -79,6 +80,7 @@ namespace NJHTFinalProject
 
             startScene = new MenuScene(this);
             gameScene = new GameScene(this);
+            leaderBoardScene = new LeaderBoardScene(this);
             aboutScene = new AboutScene(this);
             helpScene = new HelpScene(this);
             gameOverScene = new GameOverScene(this);
@@ -91,7 +93,7 @@ namespace NJHTFinalProject
             this.Components.Add(aboutScene);
             this.Components.Add(helpScene);
             this.Components.Add(gameOverScene);
-
+            this.Components.Add(leaderBoardScene);
             _menuInstance = _menuMusic.CreateInstance();
             _menuInstance.IsLooped = true;
             _menuInstance.Play();
@@ -125,6 +127,7 @@ namespace NJHTFinalProject
                         _buttonSelectedIntance.Play();
 
                         HideAllScenes(); // Goes to options scene
+                        leaderBoardScene.Show();
                         _menuInstance.Stop();
                     }
                     else if (selectedIndex == 2)
