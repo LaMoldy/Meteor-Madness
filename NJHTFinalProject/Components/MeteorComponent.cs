@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -16,13 +17,15 @@ namespace NJHTFinalProject.Components
         private bool playerHit = false;
 
         private GameScreenComponent _gameScreenComponent;
+        private SoundEffect _soundEffect;
 
         public MeteorComponent(Game game,
             SpriteBatch spriteBatch,
             Texture2D meteor,
             Vector2 position,
             Rectangle hitBox,
-            GameScreenComponent gameScreenComponent) : base(game)
+            GameScreenComponent gameScreenComponent,
+            SoundEffect soundEffect) : base(game)
         {
             _meteor = meteor;
             _position = position;
@@ -32,6 +35,8 @@ namespace NJHTFinalProject.Components
 
             Random rand = new Random();
             direction = rand.Next(2);
+
+            _soundEffect = soundEffect;
         }
 
         public override void Draw(GameTime gameTime)
@@ -67,6 +72,8 @@ namespace NJHTFinalProject.Components
             {
                 Shared.PlayerLives--;
                 playerHit = true;
+
+                _soundEffect.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
             }
 
             base.Update(gameTime);

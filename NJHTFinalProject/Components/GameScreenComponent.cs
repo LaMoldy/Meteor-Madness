@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Scenes;
 using System;
 
@@ -17,6 +18,8 @@ namespace NJHTFinalProject.Components
         private Texture2D _meteor;
         private Texture2D _healthPlanet;
         private GameScene _gameScene;
+        private SoundEffect _soundEffect;
+        private SoundEffectInstance _soundEffectInstance;
         private int counter = 0;
 
         public GameScreenComponent(Game game,
@@ -28,7 +31,8 @@ namespace NJHTFinalProject.Components
             SpriteFont spriteFont,
             Texture2D meteor,
             Texture2D healthPlanet,
-            GameScene gameScene) : base(game)
+            GameScene gameScene,
+            SoundEffect soundEffect) : base(game)
         {
             _spriteBatch = spriteBatch;
             _spaceShipPosition = position;
@@ -39,6 +43,11 @@ namespace NJHTFinalProject.Components
             _meteor = meteor;
             _healthPlanet = healthPlanet;
             _gameScene = gameScene;
+            _soundEffect = soundEffect;
+
+            _soundEffectInstance = _soundEffect.CreateInstance();
+            _soundEffectInstance.Volume = 0.3f;
+            
 
             counter = 0;
         }
@@ -90,6 +99,16 @@ namespace NJHTFinalProject.Components
 
         public override void Update(GameTime gameTime)
         {
+            if (_gameScene.Enabled)
+            {
+                _soundEffectInstance.Play();
+            }
+            else
+            {
+                _soundEffectInstance.Stop();
+            }
+
+
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {

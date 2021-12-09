@@ -1,7 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿// GAME MUSIC: https://www.youtube.com/watch?v=L_OYo2RS8iU&list=PLwJjxqYuirCLkq42mGw4XKGQlpZSfxsYd&index=8
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using NJHTFinalProject.Scenes;
 
 namespace NJHTFinalProject
@@ -121,6 +124,8 @@ namespace NJHTFinalProject
                         HideAllScenes();
                         gameScene.Show(); // Goes to play scene
                         _menuInstance.Stop();
+
+                        
                     }
                     else if (selectedIndex == 1)
                     {
@@ -194,6 +199,7 @@ namespace NJHTFinalProject
                     Shared.PlayerLives = 3;
                     gameOverScene.Show();
                     _menuInstance.Play();
+                    MediaPlayer.Stop();
                 }
             }
 

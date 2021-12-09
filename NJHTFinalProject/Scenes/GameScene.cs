@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Components;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace NJHTFinalProject.Scenes
 
         private Texture2D meteor;
         private Game _game;
+        private SoundEffect soundEffect;
+        private SoundEffect soundEffect2;
         public List<MeteorComponent> MeteorComponents { get; set; }
         private SpriteBatch _spriteBatch;
 
@@ -34,10 +37,12 @@ namespace NJHTFinalProject.Scenes
             SpriteFont spriteFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
             Texture2D healthPlanet = g.Content.Load<Texture2D>("Images/HealthPlanet");
             meteor = g.Content.Load<Texture2D>("Images/Meteor/Meteor/rotationY1");
+            soundEffect = g.Content.Load<SoundEffect>("Sounds/Collision");
+            soundEffect2 = g.Content.Load<SoundEffect>("Sounds/GameMusic");
 
             _game = game;
 
-            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this);
+            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this, soundEffect2);
             MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
@@ -57,7 +62,8 @@ namespace NJHTFinalProject.Scenes
             Vector2 position = new Vector2(rand.Next((int)Shared.stage.X), -7);
 
             Rectangle hitBox = new Rectangle((int)position.X, (int)position.Y, 100, 100);
-            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox, GameComponent);
+
+            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox, GameComponent, soundEffect);
 
             MeteorComponents.Add(meteorSprite);
         }
