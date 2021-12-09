@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using NJHTFinalProject.Scenes;
 using System;
+using System.Collections.Generic;
 
 namespace NJHTFinalProject.Components
 {
@@ -12,7 +13,7 @@ namespace NJHTFinalProject.Components
         private SpriteBatch _spriteBatch;
         private Vector2 _spaceShipPosition;
         private Texture2D _spaceship;
-        private Texture2D _background;
+        private List<Background> _background;
         private Rectangle _screenSize;
         private SpriteFont _spriteFont;
         private Texture2D _healthPlanet;
@@ -25,7 +26,7 @@ namespace NJHTFinalProject.Components
             SpriteBatch spriteBatch,
             Vector2 position,
             Texture2D spaceship,
-            Texture2D background,
+            List<Background> background,
             Rectangle screenSize,
             SpriteFont spriteFont,
             Texture2D healthPlanet,
@@ -46,9 +47,12 @@ namespace NJHTFinalProject.Components
 
         public override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
-
-            _spriteBatch.Draw(_background, _screenSize, Color.White);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
+            foreach (Background background in _background)
+            {
+                background.Draw(_spriteBatch);
+            }
+            //_spriteBatch.Draw(_background, _screenSize, Color.White);
             _spriteBatch.Draw(_spaceship, new Rectangle((int)_spaceShipPosition.X, (int)_spaceShipPosition.Y, 200, 250), Color.White);
 
             int lifeCounter = 0;
@@ -95,33 +99,38 @@ namespace NJHTFinalProject.Components
             {
                 _soundEffectInstance.Play();
             }*/
-
+            Vector2 direction = Vector2.Zero;
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
-                _spaceShipPosition.Y -= 10;
+                direction = new Vector2(0, -1);
+                _spaceShipPosition.Y -= 5;
                 Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
             {
-                _spaceShipPosition.Y += 10;
+                direction = new Vector2(0, 1);
+                _spaceShipPosition.Y += 5;
                 Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
             {
-                _spaceShipPosition.X -= 10;
+                direction = new Vector2(-1, 0);
+                _spaceShipPosition.X -= 5;
                 Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
             {
-                _spaceShipPosition.X += 10;
+                direction = new Vector2(1, 0);
+                _spaceShipPosition.X += 5;
                 Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
             }
-
+            foreach (Background background in _background)
+                background.Update(gameTime, direction, GraphicsDevice.Viewport);
             base.Update(gameTime);
         }
     }

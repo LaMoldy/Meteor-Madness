@@ -12,6 +12,7 @@ namespace NJHTFinalProject.Scenes
         public GameScreenComponent GameComponent { get; set; }
 
         private List<Texture2D> meteors = new List<Texture2D>();
+        List<Background> Backgrounds;
         private Game _game;
         private SoundEffect soundEffect;
         private SoundEffect soundEffect2;
@@ -34,7 +35,12 @@ namespace NJHTFinalProject.Scenes
             _spriteBatch = g._spriteBatch;
 
             Texture2D spaceship = g.Content.Load<Texture2D>("Images/Spaceship");
-            Texture2D background = g.Content.Load<Texture2D>("Images/Space/Space_Stars10");
+            //Texture2D background = g.Content.Load<Texture2D>("Images/Space/Space_Stars10");
+            //Load the background images
+            Backgrounds = new List<Background>();
+            Backgrounds.Add(new Background(g.Content.Load<Texture2D>("Images/Space/Space_Stars10"), new Vector2(300, 300), 0.6f));
+            Backgrounds.Add(new Background(g.Content.Load<Texture2D>("Images/Space/Space_Stars11"), new Vector2(500, 500), 0.8f));
+            Backgrounds.Add(new Background(g.Content.Load<Texture2D>("Images/Space/Space_Stars12"), new Vector2(700, 700), 1.1f));
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
             SpriteFont spriteFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
             Texture2D healthPlanet = g.Content.Load<Texture2D>("Images/HealthPlanet");
@@ -50,7 +56,7 @@ namespace NJHTFinalProject.Scenes
 
             _game = game;
 
-            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, healthPlanet, this);
+            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, Backgrounds, screenSize, spriteFont, healthPlanet, this);
             MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
