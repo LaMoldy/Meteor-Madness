@@ -49,11 +49,11 @@ namespace NJHTFinalProject.Components
             _spriteBatch.Draw(_background, _screenSize, Color.White);
             _spriteBatch.DrawString(_font, "Meteor Madness", new Vector2(690, 170), Color.White);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (SelectedIndex == i)
                 {
-                    _spriteBatch.Draw(_menuButtons[i + 4], tempPosition, Color.White);
+                    _spriteBatch.Draw(_menuButtons[i + 5], tempPosition, Color.White);
                     tempPosition.Y += 90;
                 }
                 else
@@ -83,7 +83,7 @@ namespace NJHTFinalProject.Components
 
                 instance.Play();
 
-                if (SelectedIndex == 4)
+                if (SelectedIndex == 5)
                 {
                     SelectedIndex = 0;
                 }
