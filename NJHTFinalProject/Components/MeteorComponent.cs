@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace NJHTFinalProject.Components
 {
@@ -9,10 +10,13 @@ namespace NJHTFinalProject.Components
     {
         private SpriteBatch _spriteBatch;
 
-        private Texture2D _meteor;
+        private List<Texture2D> _meteorSprites;
         private Vector2 _position;
         private int direction = 0;
         private Rectangle _hitBox;
+        private int _delay;
+        private int delayCounter;
+        private int meteorIndex;
 
         private bool playerHit = false;
 
@@ -21,13 +25,14 @@ namespace NJHTFinalProject.Components
 
         public MeteorComponent(Game game,
             SpriteBatch spriteBatch,
-            Texture2D meteor,
+            List<Texture2D> meteorSprites,
             Vector2 position,
             Rectangle hitBox,
             GameScreenComponent gameScreenComponent,
-            SoundEffect soundEffect) : base(game)
+            SoundEffect soundEffect,
+            int delay) : base(game)
         {
-            _meteor = meteor;
+            _meteorSprites = meteorSprites;
             _position = position;
             _hitBox = hitBox;
             _spriteBatch = spriteBatch;
@@ -36,16 +41,24 @@ namespace NJHTFinalProject.Components
             Random rand = new Random();
             direction = rand.Next(2);
 
+            _delay = delay;
+
+            delayCounter = 0;
+            meteorIndex = 0;
+
             _soundEffect = soundEffect;
         }
 
         public override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
-
-            if (!playerHit)
+            if (meteorIndex >= 0)
             {
-                _spriteBatch.Draw(_meteor, _hitBox, Color.White);
+                if (!playerHit)
+                {
+                    _spriteBatch.Draw(_meteorSprites[meteorIndex], _hitBox, Color.White);
+                }
+                
             }
             _spriteBatch.End();
 
@@ -74,6 +87,18 @@ namespace NJHTFinalProject.Components
                 playerHit = true;
 
                 _soundEffect.Play(volume: 0.1f, pitch: 0.0f, pan: 0.0f);
+            }
+
+            delayCounter++;
+            if (delayCounter > _delay)
+            {
+                meteorIndex++;
+
+                if (meteorIndex == _meteorSprites.Count)
+                {
+                    meteorIndex = 0;
+                    delayCounter = 0;
+                }
             }
 
             base.Update(gameTime);

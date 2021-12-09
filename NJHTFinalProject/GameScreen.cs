@@ -226,8 +226,6 @@ namespace NJHTFinalProject
 
         protected override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
-            _spriteBatch.End();
             GraphicsDevice.Clear(Color.Black);
             count++;
             base.Draw(gameTime);

@@ -15,7 +15,6 @@ namespace NJHTFinalProject.Components
         private Texture2D _background;
         private Rectangle _screenSize;
         private SpriteFont _spriteFont;
-        private Texture2D _meteor;
         private Texture2D _healthPlanet;
         private GameScene _gameScene;
         private SoundEffect _soundEffect;
@@ -29,11 +28,8 @@ namespace NJHTFinalProject.Components
             Texture2D background,
             Rectangle screenSize,
             SpriteFont spriteFont,
-            Texture2D meteor,
             Texture2D healthPlanet,
-            GameScene gameScene)
-            //SoundEffect soundEffect)
-            : base(game)
+            GameScene gameScene) : base(game)
         {
             _spriteBatch = spriteBatch;
             _spaceShipPosition = position;
@@ -41,13 +37,8 @@ namespace NJHTFinalProject.Components
             _background = background;
             _screenSize = screenSize;
             _spriteFont = spriteFont;
-            _meteor = meteor;
             _healthPlanet = healthPlanet;
             _gameScene = gameScene;
-            //_soundEffect = soundEffect;
-
-           /* _soundEffectInstance = _soundEffect.CreateInstance();
-            _soundEffectInstance.Volume = 0.3f;*/
             
 
             counter = 0;

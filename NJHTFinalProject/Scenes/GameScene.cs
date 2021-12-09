@@ -11,7 +11,7 @@ namespace NJHTFinalProject.Scenes
     {
         public GameScreenComponent GameComponent { get; set; }
 
-        private Texture2D meteor;
+        private List<Texture2D> meteors = new List<Texture2D>();
         private Game _game;
         private SoundEffect soundEffect;
         private SoundEffect soundEffect2;
@@ -38,13 +38,19 @@ namespace NJHTFinalProject.Scenes
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
             SpriteFont spriteFont = g.Content.Load<SpriteFont>("Fonts/regularFont");
             Texture2D healthPlanet = g.Content.Load<Texture2D>("Images/HealthPlanet");
-            meteor = g.Content.Load<Texture2D>("Images/Meteor/Meteor/rotationY1");
+
+            for (int i = 1; i <= 21; i++)
+            {
+                var texture = g.Content.Load<Texture2D>($"Images/Meteor/Meteor/rotationY{i}");
+                meteors.Add(texture); 
+            }
+
             soundEffect = g.Content.Load<SoundEffect>("Sounds/Collision");
             soundEffect2 = g.Content.Load<SoundEffect>("Sounds/GameMusic");
 
             _game = game;
 
-            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this);
+            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, healthPlanet, this);
             MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
@@ -67,7 +73,7 @@ namespace NJHTFinalProject.Scenes
 
             Rectangle hitBox = new Rectangle((int)position.X, (int)position.Y, 100, 100);
 
-            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox, GameComponent, soundEffect);
+            var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteors, position, hitBox, GameComponent, soundEffect, 10);
 
             MeteorComponents.Add(meteorSprite);
         }
