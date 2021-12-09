@@ -126,6 +126,7 @@ namespace NJHTFinalProject
                         HideAllScenes();
                         gameScene.Show(); // Goes to play scene
                         _menuInstance.Stop();
+                        gameScene.PlaySound();
 
                         
                     }
@@ -180,6 +181,7 @@ namespace NJHTFinalProject
             }
             else if (gameOverScene.Enabled)
             {
+                gameScene.StopSound();
                 if ((keyboardState.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter)) || (gamePadState.Buttons.A == ButtonState.Pressed) && oldGPState.Buttons.A == ButtonState.Released)
                 {
                     gameOverScene.Hide();

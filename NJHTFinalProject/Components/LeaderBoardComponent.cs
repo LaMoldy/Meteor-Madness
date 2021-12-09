@@ -18,6 +18,8 @@ namespace NJHTFinalProject.Components
         private string _authorOne;
         private string _authorTwo;
 
+        private ScoreManager _scoreManager;
+
 
         public LeaderBoardComponent(Game game,
             SpriteBatch spriteBatch,

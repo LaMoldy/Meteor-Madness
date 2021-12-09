@@ -16,6 +16,10 @@ namespace NJHTFinalProject.Scenes
 
         private SpriteBatch _spriteBatch;
 
+        private ScoreManager _scoreManager;
+
+        private SpriteFont _font;
+
         private Vector2 _position;
         public LeaderBoardScene(Game game) : base(game)
         {
@@ -52,7 +56,6 @@ namespace NJHTFinalProject.Scenes
         }
         public override void Initialize()
         {
-            Random = new Random();
             base.Initialize();
         }
          public void SaveHighscore(int score)

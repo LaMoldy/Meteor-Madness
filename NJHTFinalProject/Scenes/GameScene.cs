@@ -15,6 +15,8 @@ namespace NJHTFinalProject.Scenes
         private Game _game;
         private SoundEffect soundEffect;
         private SoundEffect soundEffect2;
+
+        private SoundEffectInstance soundEffect2Instance;
         public List<MeteorComponent> MeteorComponents { get; set; }
         private SpriteBatch _spriteBatch;
 
@@ -42,7 +44,7 @@ namespace NJHTFinalProject.Scenes
 
             _game = game;
 
-            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this, soundEffect2);
+            GameComponent = new GameScreenComponent(game, _spriteBatch, _position, spaceship, background, screenSize, spriteFont, meteor, healthPlanet, this);
             MeteorComponents = new List<MeteorComponent>();
 
             this.Components.Add(GameComponent);
@@ -51,6 +53,8 @@ namespace NJHTFinalProject.Scenes
             {
                 this.Components.Add(meteors);
             }
+
+            soundEffect2Instance = soundEffect2.CreateInstance();
         }
 
         public void CreateMeteor()
@@ -66,6 +70,17 @@ namespace NJHTFinalProject.Scenes
             var meteorSprite = new MeteorComponent(_game, _spriteBatch, meteor, position, hitBox, GameComponent, soundEffect);
 
             MeteorComponents.Add(meteorSprite);
+        }
+
+        public void PlaySound()
+        {
+            soundEffect2Instance.Volume = 0.3f;
+            soundEffect2Instance.Play();
+        }
+
+        public void StopSound()
+        {
+            soundEffect2Instance.Stop();
         }
     }
 }

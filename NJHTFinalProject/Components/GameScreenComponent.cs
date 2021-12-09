@@ -31,8 +31,9 @@ namespace NJHTFinalProject.Components
             SpriteFont spriteFont,
             Texture2D meteor,
             Texture2D healthPlanet,
-            GameScene gameScene,
-            SoundEffect soundEffect) : base(game)
+            GameScene gameScene)
+            //SoundEffect soundEffect)
+            : base(game)
         {
             _spriteBatch = spriteBatch;
             _spaceShipPosition = position;
@@ -43,10 +44,10 @@ namespace NJHTFinalProject.Components
             _meteor = meteor;
             _healthPlanet = healthPlanet;
             _gameScene = gameScene;
-            _soundEffect = soundEffect;
+            //_soundEffect = soundEffect;
 
-            _soundEffectInstance = _soundEffect.CreateInstance();
-            _soundEffectInstance.Volume = 0.3f;
+           /* _soundEffectInstance = _soundEffect.CreateInstance();
+            _soundEffectInstance.Volume = 0.3f;*/
             
 
             counter = 0;
@@ -99,14 +100,10 @@ namespace NJHTFinalProject.Components
 
         public override void Update(GameTime gameTime)
         {
-            if (_gameScene.Enabled)
+            /*if (_gameScene.Enabled)
             {
                 _soundEffectInstance.Play();
-            }
-            else
-            {
-                _soundEffectInstance.Stop();
-            }
+            }*/
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
