@@ -22,12 +22,12 @@ namespace NJHTFinalProject
 
         // Declares all scenes
         private MenuScene startScene;
-
         private GameScene gameScene;
         private LeaderBoardScene leaderBoardScene;
         private AboutScene aboutScene;
         private HelpScene helpScene;
         private GameOverScene gameOverScene;
+        private UsernameScene usernameScene;
 
         private int count = 0;
 
@@ -45,7 +45,7 @@ namespace NJHTFinalProject
 
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.IsFullScreen = false;
+            _graphics.IsFullScreen = true;
 
 
 
@@ -66,7 +66,7 @@ namespace NJHTFinalProject
             }
 
             Content.RootDirectory = "Content";
-            IsMouseVisible = false;
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -88,6 +88,7 @@ namespace NJHTFinalProject
             aboutScene = new AboutScene(this);
             helpScene = new HelpScene(this);
             gameOverScene = new GameOverScene(this);
+            usernameScene = new UsernameScene(this);
 
             _menuMusic = Content.Load<SoundEffect>("Sounds/MenuMusic");
             _buttonSelected = Content.Load<SoundEffect>("Sounds/ButtonSelected");
@@ -98,13 +99,15 @@ namespace NJHTFinalProject
             this.Components.Add(helpScene);
             this.Components.Add(gameOverScene);
             this.Components.Add(leaderBoardScene);
+            this.Components.Add(usernameScene);
+
             _menuInstance = _menuMusic.CreateInstance();
             _menuInstance.IsLooped = true;
             _menuInstance.Play();
 
             _buttonSelectedIntance = _buttonSelected.CreateInstance();
 
-            startScene.Show();
+            usernameScene.Show();
         }
 
         protected override void Update(GameTime gameTime)
@@ -215,6 +218,14 @@ namespace NJHTFinalProject
                 if ((keyboardState.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape)) || (gamePadState.Buttons.B == ButtonState.Pressed) && oldGPState.Buttons.B == ButtonState.Released)
                 {
                     HideAllScenes();
+                    startScene.Show();
+                }
+            }
+            else if (usernameScene.Enabled)
+            {
+                if (!string.IsNullOrWhiteSpace(Shared.PlayerName))
+                {
+                    usernameScene.Hide();
                     startScene.Show();
                 }
             }

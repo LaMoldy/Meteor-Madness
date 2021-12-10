@@ -61,7 +61,7 @@ namespace NJHTFinalProject.Scenes
         {
             _scoreManager.Add(new Models.Score()
             {
-                PlayerName = "GLitch",
+                PlayerName = Shared.PlayerName,
                 Value = score,
             }
            );

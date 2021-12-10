@@ -104,30 +104,42 @@ namespace NJHTFinalProject.Components
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
-                direction = new Vector2(0, -1);
-                _spaceShipPosition.Y -= 10;
-                Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
+                if (_spaceShipPosition.Y >= 0)
+                {
+                    direction = new Vector2(0, -1);
+                    _spaceShipPosition.Y -= 10;
+                    Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
+                }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y < 0)
             {
-                direction = new Vector2(0, 1);
-                _spaceShipPosition.Y += 10;
-                Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
+                if (_spaceShipPosition.Y <= Shared.stage.Y - 190)
+                {
+                    direction = new Vector2(0, 1);
+                    _spaceShipPosition.Y += 10;
+                    Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
+                }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X < 0)
             {
-                direction = new Vector2(-1, 0);
-                _spaceShipPosition.X -= 10;
-                Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
+                if (_spaceShipPosition.X >= 0)
+                {
+                    direction = new Vector2(-1, 0);
+                    _spaceShipPosition.X -= 10;
+                    Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
+                }
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X > 0)
             {
-                direction = new Vector2(1, 0);
-                _spaceShipPosition.X += 10;
-                Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
+                if (_spaceShipPosition.X < Shared.stage.X - 200)
+                {
+                    direction = new Vector2(1, 0);
+                    _spaceShipPosition.X += 10;
+                    Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
+                }
             }
             //parallaxing
             foreach (Background background in _background)
