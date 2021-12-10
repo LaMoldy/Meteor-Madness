@@ -19,7 +19,7 @@ namespace NJHTFinalProject
         private SoundEffectInstance _menuInstance;
         private KeyboardState oldState;
         private GamePadState oldGPState;
-
+        Texture2D Title;
         // Declares all scenes
         private MenuScene startScene;
 
@@ -41,7 +41,9 @@ namespace NJHTFinalProject
 
         public GameScreen()
         {
+
             Window.Title = "Meteor Madness";
+
 
             _graphics = new GraphicsDeviceManager(this);
 
@@ -81,7 +83,7 @@ namespace NJHTFinalProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            Title = Content.Load<Texture2D>("Images/title");
             startScene = new MenuScene(this);
             gameScene = new GameScene(this);
             leaderBoardScene = new LeaderBoardScene(this);
@@ -227,6 +229,7 @@ namespace NJHTFinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+            
             count++;
             base.Draw(gameTime);
         }
