@@ -40,7 +40,7 @@ namespace NJHTFinalProject.Components
             _spriteFont = spriteFont;
             _healthPlanet = healthPlanet;
             _gameScene = gameScene;
-            
+
 
             counter = 0;
         }
@@ -100,13 +100,14 @@ namespace NJHTFinalProject.Components
                 _soundEffectInstance.Play();
             }*/
             Vector2 direction = Vector2.Zero;
+            direction = new Vector2(0, -1);
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up)
                 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y > 0)
             {
                 if (_spaceShipPosition.Y >= 0)
                 {
-                    direction = new Vector2(0, -1);
+                    //direction = new Vector2(0, -1);
                     _spaceShipPosition.Y -= 10;
                     Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
                 }
@@ -116,7 +117,7 @@ namespace NJHTFinalProject.Components
             {
                 if (_spaceShipPosition.Y <= Shared.stage.Y - 190)
                 {
-                    direction = new Vector2(0, 1);
+                    //direction = new Vector2(0, 1);
                     _spaceShipPosition.Y += 10;
                     Shared.PlayerHitBox.Y = (int)_spaceShipPosition.Y;
                 }
@@ -126,7 +127,7 @@ namespace NJHTFinalProject.Components
             {
                 if (_spaceShipPosition.X >= 0)
                 {
-                    direction = new Vector2(-1, 0);
+                    //direction = new Vector2(-1, 0);
                     _spaceShipPosition.X -= 10;
                     Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
                 }
@@ -136,7 +137,7 @@ namespace NJHTFinalProject.Components
             {
                 if (_spaceShipPosition.X < Shared.stage.X - 200)
                 {
-                    direction = new Vector2(1, 0);
+                    //direction = new Vector2(1, 0);
                     _spaceShipPosition.X += 10;
                     Shared.PlayerHitBox.X = (int)_spaceShipPosition.X;
                 }
