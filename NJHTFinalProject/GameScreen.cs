@@ -19,7 +19,6 @@ namespace NJHTFinalProject
         private SoundEffectInstance _menuInstance;
         private KeyboardState oldState;
         private GamePadState oldGPState;
-        Texture2D Title;
         // Declares all scenes
         private MenuScene startScene;
         private GameScene gameScene;
@@ -83,7 +82,6 @@ namespace NJHTFinalProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Title = Content.Load<Texture2D>("Images/title");
             startScene = new MenuScene(this);
             gameScene = new GameScene(this);
             leaderBoardScene = new LeaderBoardScene(this);

@@ -32,11 +32,13 @@ namespace NJHTFinalProject.Scenes
             menuButtons[8] = g.Content.Load<Texture2D>("Images/MenuButtons/AboutUsButtonSelected");
             menuButtons[9] = g.Content.Load<Texture2D>("Images/MenuButtons/ExitButtonSelected");
 
+            Texture2D menuTitle = g.Content.Load<Texture2D>("Images/title");
+
             SpriteFont font = g.Content.Load<SpriteFont>("Fonts/titleFont");
 
             Rectangle screenSize = new Rectangle(0, 0, g.GraphicsDevice.Viewport.Width, g.GraphicsDevice.Viewport.Height);
 
-            Menu = new MenuComponent(game, _spriteBatch, background, screenSize, buttonSound, menuButtons, font);
+            Menu = new MenuComponent(game, _spriteBatch, background, screenSize, buttonSound, menuButtons, font, menuTitle);
             this.Components.Add(Menu);
         }
     }

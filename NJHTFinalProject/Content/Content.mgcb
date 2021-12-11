@@ -473,18 +473,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/Meteor/Meteor/rotationY9.png
 
-#begin Images/Meteor/MeteorSpriteSheet.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Meteor/MeteorSpriteSheet.jpg
-
 #begin Images/Space/Space_Stars1.png
 /importer:TextureImporter
 /processor:TextureProcessor

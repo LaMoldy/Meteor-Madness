@@ -14,6 +14,7 @@ namespace NJHTFinalProject.Components
         private SoundEffect _buttonSound;
         private Vector2 _position;
         private SpriteFont _font;
+        private Texture2D _menuTitle;
 
         private KeyboardState oldState;
         private GamePadState oldGPState;
@@ -26,7 +27,8 @@ namespace NJHTFinalProject.Components
             Rectangle screenSize,
             SoundEffect buttonSound,
             Texture2D[] menuButtons,
-            SpriteFont font) : base(game)
+            SpriteFont font,
+            Texture2D menuTitle) : base(game)
         {
             _spriteBatch = spriteBatch;
             _position = new Vector2(Shared.stage.X / 2 - 150, Shared.stage.Y / 2 - 50);
@@ -35,6 +37,7 @@ namespace NJHTFinalProject.Components
             _buttonSound = buttonSound;
             _menuButtons = menuButtons;
             _font = font;
+            _menuTitle = menuTitle;
         }
 
         public override void Draw(GameTime gameTime)
@@ -44,7 +47,7 @@ namespace NJHTFinalProject.Components
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(_background, _screenSize, Color.White);
-            _spriteBatch.DrawString(_font, "Meteor Madness", new Vector2(690, 170), Color.White);
+            _spriteBatch.Draw(_menuTitle, new Vector2(690, 70), Color.White);
 
             for (int i = 0; i < 5; i++)
             {
