@@ -31,7 +31,11 @@ namespace NJHTFinalProject.Components
             string mouseHeader = "Mouse and Keyboard\n\n";
             string mouseControls = "W: Move up\nA: Left left\nS: Move down\nD: Move right\n\n\n";
             string controllerHeader = "Controller:\n\n";
-            string controllerControls = "Left stick up: Move up\nLeft stick left: Move left\nLeft stick down: Move down\nLeft stick right: Move right";
+            string controllerControls = "Left stick up: Move up\nLeft stick left: Move left\nLeft stick down: Move down\nLeft stick right: Move right\n" +
+                "\nMeteor Madness is a survival game that summons a shining rock from the top of the screen, smashing into the floor \nand dealing damage " +
+                "in an area of effect. In this game, the Player is in a spaceship and has to move his spaceship\n back and forth, left and right, to avoid" +
+                " colliding with meteors. Here the point is not why can't WE destroy meteors? \nBut how long can you hold your spaceship with just three lives" +
+                " and avoid colliding with meteors? So are you ready \nto show the world how competent you are? Gear up and launch your spaceship NOW!";
 
             _spriteBatch.DrawString(_regularFont, mouseHeader + mouseControls + controllerHeader + controllerControls, new Vector2(Shared.stage.X / 2 - 150, 250), Color.White);
 
