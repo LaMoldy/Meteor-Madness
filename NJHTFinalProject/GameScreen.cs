@@ -202,6 +202,8 @@ namespace NJHTFinalProject
                 {
                     gameScene.Hide();
                     startScene.Show();
+                    gameScene.StopSound();
+                    _menuInstance.Play();
                 }
 
                 if (Shared.PlayerLives == -1)
