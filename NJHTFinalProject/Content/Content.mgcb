@@ -209,6 +209,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/MenuButtons/PlayButtonSelected.png
 
+#begin Images/MenuButtons/SwitchProfileButton.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/MenuButtons/SwitchProfileButton.png
+
+#begin Images/MenuButtons/SwitchProfileSelected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/MenuButtons/SwitchProfileSelected.png
+
 #begin Images/Meteor.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
