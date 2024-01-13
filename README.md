@@ -1,4 +1,3 @@
-# final_project
-The final project for the Game Development and Data Structures course at Conestoga College.
+# Meteor Madness
 
-### KEY FILE PASSWORD: NJHT123
+Try to avoid the meteors and create new highscores.
